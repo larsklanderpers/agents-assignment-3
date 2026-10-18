@@ -36,7 +36,7 @@ const all = $input.all().map(i => i.json);
 const requests = all.filter(x => x.type === "request");
 const options  = $('Read Shipping JSON').all().map(i => ({ type: "option", ...i.json }));
 
-// ---- TODO — greedy carrier assignment -------------------------------------
+// ---- Implementation — greedy carrier assignment -------------------------------------
 
 /**
  * Pick the cheapest shipping option satisfying ALL hard constraints
@@ -65,8 +65,24 @@ const options  = $('Read Shipping JSON').all().map(i => ({ type: "option", ...i.
  * the LLM branch, not because we couldn't afford the optimal search.
  */
 function pickCheapestFeasible(req, options) {
-  // TODO [hard] — LO-2: classical search baselines
-  throw new Error("TODO [hard]: implement pickCheapestFeasible()");
+  const weight = Number(req.weight_kg);
+  const deadline = Number(req.deadline_days);
+  if (!Number.isFinite(weight) || weight < 0 || !Number.isFinite(deadline) || deadline < 0) return null;
+  const perishable = req.perishable === true || req.perishable === "true";
+  const feasible = options.filter(option => {
+    const days = Number(option.transit_days);
+    const capacity = Number(option.max_weight_kg);
+    const cost = Number(option.cost_per_kg);
+    return option.origin_region === req.origin_region
+      && option.destination_region === req.dest_region
+      && Number.isFinite(days) && days >= 0 && days <= deadline
+      && Number.isFinite(capacity) && capacity >= weight
+      && Number.isFinite(cost) && cost >= 0
+      && (!perishable || option.supports_perishable === true || option.supports_perishable === "true");
+  }).map(option => ({...option, total_cost_usd: weight * Number(option.cost_per_kg)}));
+  // Equal costs use option_id for a stable, reproducible result.
+  feasible.sort((a,b) => a.total_cost_usd - b.total_cost_usd || a.option_id.localeCompare(b.option_id));
+  return feasible.length ? feasible[0] : null;
 }
 
 // ---- Main loop (provided) -------------------------------------------------

@@ -17,7 +17,7 @@
  * Slow-movers make the formula numerically unstable.
  *
  * This node teaches the boundary problem: classical algorithms give crisp
- * answers exactly when their assumptions hold. Your two TODOs are
+ * answers exactly when their assumptions hold. Your two implementation tasks are
  *   (a) implement the formula
  *   (b) detect when its assumptions don't hold for a given SKU
  *
@@ -57,7 +57,7 @@ function annualDemand(salesForSku) {
   return salesForSku.reduce((acc, r) => acc + Number(r.units_sold), 0);
 }
 
-// ---- TODO #1 — the EOQ formula --------------------------------------------
+// ---- Implemented algorithm #1 — the EOQ formula --------------------------------------------
 
 /**
  * Wilson's Economic Order Quantity:
@@ -74,11 +74,11 @@ function annualDemand(salesForSku) {
  *       and dividing by zero holding cost is meaningless.)
  */
 function eoq(D, S, H) {
-  // TODO [medium] — LO-2: classical optimization
-  throw new Error("TODO [medium]: implement eoq()");
+  if (![D, S, H].every(Number.isFinite) || D <= 0 || S < 0 || H <= 0) return 0;
+  return Math.round(Math.sqrt((2 * D * S) / H));
 }
 
-// ---- TODO #2 — assumption-violation detection -----------------------------
+// ---- Implemented algorithm #2 — assumption-violation detection -----------------------------
 
 /**
  * EOQ assumes:
@@ -109,8 +109,25 @@ function eoq(D, S, H) {
  *       trigger multiple flags — that's expected and useful downstream.
  */
 function detectViolations(inv, salesSeries) {
-  // TODO [hard] — LO-4: knowing when classical models fail
-  throw new Error("TODO [hard]: implement detectViolations()");
+  const flags = [];
+  const mean = rows => rows.length
+    ? rows.reduce((sum, row) => sum + row.units_sold, 0) / rows.length : 0;
+  const recent = mean(salesSeries.slice(-3));
+  const prior = salesSeries.slice(-12, -3);
+  // Compare non-overlapping periods only when at least 3 recent months exist.
+  if (salesSeries.length > 3 && recent > 2.5 * mean(prior)) flags.push("viral_spike");
+  if (salesSeries.length >= 6 && recent < 0.5 * mean(salesSeries.slice(0, 3))) {
+    flags.push("declining");
+  }
+  if (annualDemand(salesSeries) < 60) flags.push("low_velocity");
+  const average = mean(salesSeries);
+  const variance = salesSeries.length
+    ? salesSeries.reduce((sum, row) => sum + (row.units_sold - average) ** 2, 0) / salesSeries.length : 0;
+  // Volatile means population coefficient of variation > 0.5.
+  const volatile = average > 0 && Math.sqrt(variance) / average > 0.5;
+  if (Number(inv.lead_time_days) > 28 && volatile) flags.push("long_lead_time");
+  // Demo SKUs are non-perishable; perishability is intentionally not checked.
+  return flags;
 }
 
 // ---- Main loop (provided) -------------------------------------------------

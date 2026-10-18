@@ -1,0 +1,139 @@
+{
+  "model": "claude-sonnet-4-6",
+  "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "pricing_accessed": "2026-10-17",
+  "pricing_usd_per_million_tokens": {
+    "input": 3,
+    "output": 15,
+    "cache_write_5m": 3.75,
+    "cache_write_1h": 6,
+    "cache_read": 0.3
+  },
+  "cost_is_estimate_not_invoice": true,
+  "runs": [
+    {
+      "branch": "forecast",
+      "status": "success",
+      "total_tokens": 5138,
+      "input_tokens": 3997,
+      "output_tokens": 1141,
+      "estimated_cost_usd": 0.029106,
+      "latency_seconds": 18.479,
+      "llm_calls": [
+        {
+          "node": "Master Planner Agent",
+          "input_tokens": 1220,
+          "output_tokens": 229,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "total_tokens": 1449,
+          "estimated_cost_usd": 0.007095
+        },
+        {
+          "node": "Forecast Context Adjuster",
+          "input_tokens": 2777,
+          "output_tokens": 912,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "total_tokens": 3689,
+          "estimated_cost_usd": 0.022011
+        }
+      ],
+      "execution_id": 41,
+      "execution_url": "http://localhost:5678/workflow/supply-chain-manager-submission-v1/executions/41"
+    },
+    {
+      "branch": "inventory",
+      "status": "success",
+      "total_tokens": 7047,
+      "input_tokens": 5610,
+      "output_tokens": 1437,
+      "estimated_cost_usd": 0.038385,
+      "latency_seconds": 27.234,
+      "llm_calls": [
+        {
+          "node": "Master Planner Agent",
+          "input_tokens": 1232,
+          "output_tokens": 219,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "total_tokens": 1451,
+          "estimated_cost_usd": 0.006981
+        },
+        {
+          "node": "Inventory Exception Handler",
+          "input_tokens": 4378,
+          "output_tokens": 1218,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "total_tokens": 5596,
+          "estimated_cost_usd": 0.031404
+        }
+      ],
+      "execution_id": 43,
+      "execution_url": "http://localhost:5678/workflow/supply-chain-manager-submission-v1/executions/43"
+    },
+    {
+      "branch": "supplier",
+      "status": "success",
+      "total_tokens": 3472,
+      "input_tokens": 2671,
+      "output_tokens": 801,
+      "estimated_cost_usd": 0.020028,
+      "latency_seconds": 17.118,
+      "llm_calls": [
+        {
+          "node": "Master Planner Agent",
+          "input_tokens": 1238,
+          "output_tokens": 198,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "total_tokens": 1436,
+          "estimated_cost_usd": 0.006684
+        },
+        {
+          "node": "Supplier Performance Monitor",
+          "input_tokens": 1433,
+          "output_tokens": 603,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "total_tokens": 2036,
+          "estimated_cost_usd": 0.013344
+        }
+      ],
+      "execution_id": 42,
+      "execution_url": "http://localhost:5678/workflow/supply-chain-manager-submission-v1/executions/42"
+    },
+    {
+      "branch": "logistics",
+      "status": "success",
+      "total_tokens": 3362,
+      "input_tokens": 2786,
+      "output_tokens": 576,
+      "estimated_cost_usd": 0.016998,
+      "latency_seconds": 14.084,
+      "llm_calls": [
+        {
+          "node": "Master Planner Agent",
+          "input_tokens": 1229,
+          "output_tokens": 135,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "total_tokens": 1364,
+          "estimated_cost_usd": 0.005712
+        },
+        {
+          "node": "Logistics Coordinator (LLM)",
+          "input_tokens": 1557,
+          "output_tokens": 441,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "total_tokens": 1998,
+          "estimated_cost_usd": 0.011286
+        }
+      ],
+      "execution_id": 40,
+      "execution_url": "http://localhost:5678/workflow/supply-chain-manager-submission-v1/executions/40"
+    }
+  ]
+}

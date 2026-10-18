@@ -1,0 +1,368 @@
+{
+  "plan_id": "demand-then-inventory",
+  "goal": "Forecast demand for the next month from the supplied sales history, then outline inventory follow-up. Start with demand forecasting.",
+  "executed_subgoal": "forecast",
+  "key_findings": [
+    "Forecasted 15 SKUs.",
+    "2 forecasts revised using supplied historical observations."
+  ],
+  "recommended_actions": [
+    {
+      "sku": "SKU-007",
+      "action": "review_adjustment",
+      "reason": "Viral spike flagged; last observed month (518 units) used as continuation scenario. Baseline lags the spike. Persistence is not guaranteed; heuristic assumption only."
+    },
+    {
+      "sku": "SKU-013",
+      "action": "review_adjustment",
+      "reason": "Sustained decline flagged; last observed month (38) is below baseline (69). Conservative scenario uses last observed units. Persistence is a heuristic assumption, not measured future demand."
+    }
+  ],
+  "next_recommended_subgoal": "inventory",
+  "remaining_subgoals": [
+    "inventory"
+  ],
+  "details": {
+    "forecasts": [
+      {
+        "sku": "SKU-001",
+        "name": "Sunglasses",
+        "target_month": "2026-01",
+        "forecast_units": 10,
+        "moving_avg": 32.3,
+        "seasonal_index": 0.31,
+        "statistical_confidence": 0,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 10,
+        "delta_pct": 0,
+        "reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline.",
+        "context_signals_used": [],
+        "baseline_units": 10,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 10,
+          "llm_reported_delta_pct": 0,
+          "original_reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline."
+        }
+      },
+      {
+        "sku": "SKU-002",
+        "name": "Beach Towel",
+        "target_month": "2026-01",
+        "forecast_units": 11,
+        "moving_avg": 35,
+        "seasonal_index": 0.3,
+        "statistical_confidence": 0,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 11,
+        "delta_pct": 0,
+        "reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline.",
+        "context_signals_used": [],
+        "baseline_units": 11,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 11,
+          "llm_reported_delta_pct": 0,
+          "original_reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline."
+        }
+      },
+      {
+        "sku": "SKU-003",
+        "name": "Sunscreen SPF 50",
+        "target_month": "2026-01",
+        "forecast_units": 12,
+        "moving_avg": 38,
+        "seasonal_index": 0.31,
+        "statistical_confidence": 0,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 12,
+        "delta_pct": 0,
+        "reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline.",
+        "context_signals_used": [],
+        "baseline_units": 12,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 12,
+          "llm_reported_delta_pct": 0,
+          "original_reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline."
+        }
+      },
+      {
+        "sku": "SKU-004",
+        "name": "Swim Trunks",
+        "target_month": "2026-01",
+        "forecast_units": 12,
+        "moving_avg": 40.7,
+        "seasonal_index": 0.3,
+        "statistical_confidence": 0,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 12,
+        "delta_pct": 0,
+        "reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline.",
+        "context_signals_used": [],
+        "baseline_units": 12,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 12,
+          "llm_reported_delta_pct": 0,
+          "original_reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline."
+        }
+      },
+      {
+        "sku": "SKU-005",
+        "name": "Beach Chair",
+        "target_month": "2026-01",
+        "forecast_units": 9,
+        "moving_avg": 29.7,
+        "seasonal_index": 0.31,
+        "statistical_confidence": 0,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 9,
+        "delta_pct": 0,
+        "reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline.",
+        "context_signals_used": [],
+        "baseline_units": 9,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 9,
+          "llm_reported_delta_pct": 0,
+          "original_reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline."
+        }
+      },
+      {
+        "sku": "SKU-006",
+        "name": "Thermal Jacket",
+        "target_month": "2026-01",
+        "forecast_units": 215,
+        "moving_avg": 121,
+        "seasonal_index": 1.78,
+        "statistical_confidence": 0.42,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 215,
+        "delta_pct": 0,
+        "reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline.",
+        "context_signals_used": [],
+        "baseline_units": 215,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 215,
+          "llm_reported_delta_pct": 0,
+          "original_reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline."
+        }
+      },
+      {
+        "sku": "SKU-007",
+        "name": "Wool Gloves",
+        "target_month": "2026-01",
+        "forecast_units": 354,
+        "moving_avg": 376.7,
+        "seasonal_index": 0.94,
+        "statistical_confidence": 0.25,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 518,
+        "delta_pct": 46.33,
+        "reasoning": "Viral spike flagged; last observed month (518 units) used as continuation scenario. Baseline lags the spike. Persistence is not guaranteed; heuristic assumption only.",
+        "context_signals_used": [
+          "history-SKU-007"
+        ],
+        "baseline_units": 354,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 518,
+          "llm_reported_delta_pct": 46.33,
+          "original_reasoning": "Viral spike flagged; last observed month (518 units) used as continuation scenario. Baseline lags the spike. Persistence is not guaranteed; heuristic assumption only."
+        }
+      },
+      {
+        "sku": "SKU-008",
+        "name": "Knit Beanie",
+        "target_month": "2026-01",
+        "forecast_units": 252,
+        "moving_avg": 141.7,
+        "seasonal_index": 1.78,
+        "statistical_confidence": 0.42,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 252,
+        "delta_pct": 0,
+        "reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline.",
+        "context_signals_used": [],
+        "baseline_units": 252,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 252,
+          "llm_reported_delta_pct": 0,
+          "original_reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline."
+        }
+      },
+      {
+        "sku": "SKU-009",
+        "name": "Snow Boots",
+        "target_month": "2026-01",
+        "forecast_units": 270,
+        "moving_avg": 152,
+        "seasonal_index": 1.77,
+        "statistical_confidence": 0.42,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 270,
+        "delta_pct": 0,
+        "reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline.",
+        "context_signals_used": [],
+        "baseline_units": 270,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 270,
+          "llm_reported_delta_pct": 0,
+          "original_reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline."
+        }
+      },
+      {
+        "sku": "SKU-010",
+        "name": "Electric Blanket",
+        "target_month": "2026-01",
+        "forecast_units": 195,
+        "moving_avg": 110.3,
+        "seasonal_index": 1.77,
+        "statistical_confidence": 0.42,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 195,
+        "delta_pct": 0,
+        "reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline.",
+        "context_signals_used": [],
+        "baseline_units": 195,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 195,
+          "llm_reported_delta_pct": 0,
+          "original_reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline."
+        }
+      },
+      {
+        "sku": "SKU-011",
+        "name": "Stainless Bottle",
+        "target_month": "2026-01",
+        "forecast_units": 75,
+        "moving_avg": 76,
+        "seasonal_index": 0.98,
+        "statistical_confidence": 0.97,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 75,
+        "delta_pct": 0,
+        "reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline.",
+        "context_signals_used": [],
+        "baseline_units": 75,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 75,
+          "llm_reported_delta_pct": 0,
+          "original_reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline."
+        }
+      },
+      {
+        "sku": "SKU-012",
+        "name": "Bluetooth Buds",
+        "target_month": "2026-01",
+        "forecast_units": 82,
+        "moving_avg": 83,
+        "seasonal_index": 0.99,
+        "statistical_confidence": 0.97,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 82,
+        "delta_pct": 0,
+        "reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline.",
+        "context_signals_used": [],
+        "baseline_units": 82,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 82,
+          "llm_reported_delta_pct": 0,
+          "original_reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline."
+        }
+      },
+      {
+        "sku": "SKU-013",
+        "name": "Wired Earbuds",
+        "target_month": "2026-01",
+        "forecast_units": 69,
+        "moving_avg": 45.7,
+        "seasonal_index": 1.52,
+        "statistical_confidence": 0.08,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 38,
+        "delta_pct": -44.93,
+        "reasoning": "Sustained decline flagged; last observed month (38) is below baseline (69). Conservative scenario uses last observed units. Persistence is a heuristic assumption, not measured future demand.",
+        "context_signals_used": [
+          "history-SKU-013"
+        ],
+        "baseline_units": 69,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 38,
+          "llm_reported_delta_pct": -44.93,
+          "original_reasoning": "Sustained decline flagged; last observed month (38) is below baseline (69). Conservative scenario uses last observed units. Persistence is a heuristic assumption, not measured future demand."
+        }
+      },
+      {
+        "sku": "SKU-014",
+        "name": "Phone Case",
+        "target_month": "2026-01",
+        "forecast_units": 95,
+        "moving_avg": 96,
+        "seasonal_index": 0.99,
+        "statistical_confidence": 0.97,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 95,
+        "delta_pct": 0,
+        "reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline.",
+        "context_signals_used": [],
+        "baseline_units": 95,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 95,
+          "llm_reported_delta_pct": 0,
+          "original_reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline."
+        }
+      },
+      {
+        "sku": "SKU-015",
+        "name": "Notebook A5",
+        "target_month": "2026-01",
+        "forecast_units": 69,
+        "moving_avg": 69.7,
+        "seasonal_index": 0.99,
+        "statistical_confidence": 0.97,
+        "method": "moving_avg_3 \u00d7 seasonal_index",
+        "notes": [],
+        "revised_forecast": 69,
+        "delta_pct": 0,
+        "reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline.",
+        "context_signals_used": [],
+        "baseline_units": 69,
+        "forecast_validation": {
+          "corrected": false,
+          "llm_reported_units": 69,
+          "llm_reported_delta_pct": 0,
+          "original_reasoning": "No viral spike, no sustained decline flagged. No contextual evidence to override baseline. Retain baseline."
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "One planner-selected branch executes per run. No automatic purchasing or bookings.",
+    "Historical observations inform scenarios, not proven future demand. EOQ uses historical annual demand.",
+    "Fixed rubric anchors and inventory thresholds are exercise policy choices."
+  ]
+}

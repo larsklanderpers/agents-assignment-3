@@ -1,0 +1,470 @@
+{
+  "nodes": [
+    [
+      "e7958011-8643-5e6d-83eb-f8725a94331d",
+      "Manual Trigger",
+      "n8n-nodes-base.manualTrigger"
+    ],
+    [
+      "23dd67ba-9597-5429-8f1f-33c43ee9df61",
+      "Set Goal",
+      "n8n-nodes-base.set"
+    ],
+    [
+      "ba465751-aa2a-5ad5-8d86-509879c3285b",
+      "Read Inventory File",
+      "n8n-nodes-base.readWriteFile"
+    ],
+    [
+      "ff6d36e5-329c-5618-b171-7f8c07c0609f",
+      "Read Inventory JSON",
+      "n8n-nodes-base.spreadsheetFile"
+    ],
+    [
+      "64b1594e-b8b2-5a1d-a6ca-19452ec29876",
+      "Read Sales File",
+      "n8n-nodes-base.readWriteFile"
+    ],
+    [
+      "3c9c7181-257a-50a3-ba30-fd1af3c53f9f",
+      "Read Sales JSON",
+      "n8n-nodes-base.spreadsheetFile"
+    ],
+    [
+      "b412b978-c894-5c7f-b7d0-2f54ff4bb763",
+      "Read Suppliers File",
+      "n8n-nodes-base.readWriteFile"
+    ],
+    [
+      "0b521b10-be09-50c8-99d4-46cfc10d569d",
+      "Read Suppliers JSON",
+      "n8n-nodes-base.spreadsheetFile"
+    ],
+    [
+      "12809fa2-b079-549f-ba37-8678434babe1",
+      "Read Shipping File",
+      "n8n-nodes-base.readWriteFile"
+    ],
+    [
+      "49b2c176-edf8-5cee-afab-048628a8eac7",
+      "Read Shipping JSON",
+      "n8n-nodes-base.spreadsheetFile"
+    ],
+    [
+      "5f23167c-9549-537c-a401-3d2511ebb884",
+      "Merge CSV Reads",
+      "n8n-nodes-base.merge"
+    ],
+    [
+      "70f5e0e7-f662-56b4-951a-bdca9e778465",
+      "Build Context Summary",
+      "n8n-nodes-base.code"
+    ],
+    [
+      "0b8313e0-3a1e-5e5e-8aeb-eb6ddaebc5d4",
+      "Master Planner Agent",
+      "n8n-nodes-base.httpRequest"
+    ],
+    [
+      "a2c3b3a0-d9dc-5a07-a37b-5e4c5a26a24b",
+      "Parse Plan",
+      "n8n-nodes-base.code"
+    ],
+    [
+      "dc22767a-90b2-5fd0-8798-5be42df98168",
+      "Route on Subgoal",
+      "n8n-nodes-base.switch"
+    ],
+    [
+      "8b659ed0-c792-578d-bc52-7a2c7415424e",
+      "Demand Forecast Engine",
+      "n8n-nodes-base.code"
+    ],
+    [
+      "267dbef7-7f2a-5c33-8a36-23c15f3c4928",
+      "Forecast Context Adjuster",
+      "n8n-nodes-base.httpRequest"
+    ],
+    [
+      "59684410-12a1-5aa6-9447-6a52df330a95",
+      "Inventory EOQ Planner",
+      "n8n-nodes-base.code"
+    ],
+    [
+      "b0d4508a-58d4-55f9-a2be-780eb0469f83",
+      "Inventory Exception Handler",
+      "n8n-nodes-base.httpRequest"
+    ],
+    [
+      "1051c1f6-5908-509e-bb6c-8788a4b24de0",
+      "Supplier Performance Monitor",
+      "n8n-nodes-base.httpRequest"
+    ],
+    [
+      "7dbbcf62-2aa2-58b7-9a7d-4dd7f48f8277",
+      "Build Shipping Requests",
+      "n8n-nodes-base.code"
+    ],
+    [
+      "e3170f22-7651-5e3d-bf3f-870ba86f8edf",
+      "Logistics Coordinator (LLM)",
+      "n8n-nodes-base.httpRequest"
+    ],
+    [
+      "74381513-65e6-54db-a859-e522ec90ee33",
+      "Parse Logistics Decision",
+      "n8n-nodes-base.code"
+    ],
+    [
+      "7ea7b7a4-878a-5bf2-ab4e-ac35a1461de3",
+      "Use Classical Fallback?",
+      "n8n-nodes-base.if"
+    ],
+    [
+      "a3186ddb-d0f2-5c13-8202-711c314bf431",
+      "Classical Logistics Fallback",
+      "n8n-nodes-base.code"
+    ],
+    [
+      "64933313-39bd-5ce0-8c75-20f9981484b5",
+      "Merge Subgoal Results",
+      "n8n-nodes-base.merge"
+    ],
+    [
+      "7f14ee66-e79e-5450-823b-0f60e7d0a61e",
+      "Final Output",
+      "n8n-nodes-base.code"
+    ]
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Goal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Goal": {
+      "main": [
+        [
+          {
+            "node": "Read Inventory File",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Sales File",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Suppliers File",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Shipping File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Inventory File": {
+      "main": [
+        [
+          {
+            "node": "Read Inventory JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Inventory JSON": {
+      "main": [
+        [
+          {
+            "node": "Merge CSV Reads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Sales File": {
+      "main": [
+        [
+          {
+            "node": "Read Sales JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Sales JSON": {
+      "main": [
+        [
+          {
+            "node": "Merge CSV Reads",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Read Suppliers File": {
+      "main": [
+        [
+          {
+            "node": "Read Suppliers JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Suppliers JSON": {
+      "main": [
+        [
+          {
+            "node": "Merge CSV Reads",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Read Shipping File": {
+      "main": [
+        [
+          {
+            "node": "Read Shipping JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Shipping JSON": {
+      "main": [
+        [
+          {
+            "node": "Merge CSV Reads",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Merge CSV Reads": {
+      "main": [
+        [
+          {
+            "node": "Build Context Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Context Summary": {
+      "main": [
+        [
+          {
+            "node": "Master Planner Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Master Planner Agent": {
+      "main": [
+        [
+          {
+            "node": "Parse Plan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Plan": {
+      "main": [
+        [
+          {
+            "node": "Route on Subgoal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route on Subgoal": {
+      "main": [
+        [
+          {
+            "node": "Demand Forecast Engine",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Inventory EOQ Planner",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Supplier Performance Monitor",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Shipping Requests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Demand Forecast Engine": {
+      "main": [
+        [
+          {
+            "node": "Forecast Context Adjuster",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Forecast Context Adjuster": {
+      "main": [
+        [
+          {
+            "node": "Merge Subgoal Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inventory EOQ Planner": {
+      "main": [
+        [
+          {
+            "node": "Inventory Exception Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inventory Exception Handler": {
+      "main": [
+        [
+          {
+            "node": "Merge Subgoal Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supplier Performance Monitor": {
+      "main": [
+        [
+          {
+            "node": "Merge Subgoal Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Shipping Requests": {
+      "main": [
+        [
+          {
+            "node": "Logistics Coordinator (LLM)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Logistics Coordinator (LLM)": {
+      "main": [
+        [
+          {
+            "node": "Parse Logistics Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Logistics Decision": {
+      "main": [
+        [
+          {
+            "node": "Use Classical Fallback?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Use Classical Fallback?": {
+      "main": [
+        [
+          {
+            "node": "Classical Logistics Fallback",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge Subgoal Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classical Logistics Fallback": {
+      "main": [
+        [
+          {
+            "node": "Merge Subgoal Results",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Subgoal Results": {
+      "main": [
+        [
+          {
+            "node": "Final Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
