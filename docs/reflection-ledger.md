@@ -433,3 +433,14 @@ Question: Where is the actual local clone, and does its starter JSON contain the
 - Kept fresh upstream documentation and data rather than reverting them to the older Ubuntu checkout. New upstream HEAD `ef59f78` clarifies all four branches should run across multiple goals, the demo needs the selected branch plus another, and forecast/inventory runs above USD 0.10 due to per-SKU calls incur no deduction. Our measured batched runs remain below the original target; the costing discussion should note this clarification during final review.
 - The Windows directory is now the working submission location. The Ubuntu submission checkout and connected experiment remain preserved copies; future submission edits should target the Windows clone to avoid divergent versions.
 - Prepared a local Git commit containing the exported workflow, matching source, draft analysis, tests and ledger. No push or Canvas submission is authorized by this move.
+### 17. Review, rehearse and prepare the recorded submission (18 October 2026)
+
+Question: Can the demo demonstrate the original planner/Switch topology, two selected branches and anomaly handling, and can the submission be published without the rehearsal script?
+
+- Walked through all five analysis sections with the user; retained the user's own edits to analysis.md.
+- Rehearsed forecasting: user confirmed next_subgoal forecast, Gloves 518 versus baseline 354, and Bottle 75 unchanged.
+- Rehearsed inventory: user confirmed next_subgoal inventory. The raw Gloves response recommended 754 although its reasoning calculated 736; user confirmed Final Output corrected it to 736 and preserved the raw value. Earbuds remained markdown with zero reorder. These observations are user-confirmed rehearsal evidence; execution IDs and token usage for these new runs were not captured here. Saved metrics remain explicitly associated with executions 41/43/42/40.
+- Saved the complete click-and-narration script locally at demo-video/video-script.md and excluded it using .git/info/exclude. It is not part of the submission commit or public push.
+- Moved the user's recording to root-level demo.mp4 to match the submission instructions, and replaced the analysis demo placeholder with a relative link. No content edits or duration claim were made about the recording.
+- Re-ran tests/test-submission.cjs successfully: original 27-node graph and connections, data calculations, anomaly flags, request templates, Sonnet 4.6, prompt limits and invalid-route rejection.
+- User authorized a new public repository larsklanderpers/agents-assignment-3, pushing the current submission including demo.mp4 and opening a PR. Plan: retain the upstream starter commit as main and publish completed work on submission/assignment-3 for review. No merge or Canvas submission requested.
