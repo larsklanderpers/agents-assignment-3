@@ -444,3 +444,5 @@ Question: Can the demo demonstrate the original planner/Switch topology, two sel
 - Moved the user's recording to root-level demo.mp4 to match the submission instructions, and replaced the analysis demo placeholder with a relative link. No content edits or duration claim were made about the recording.
 - Re-ran tests/test-submission.cjs successfully: original 27-node graph and connections, data calculations, anomaly flags, request templates, Sonnet 4.6, prompt limits and invalid-route rejection.
 - User authorized a new public repository larsklanderpers/agents-assignment-3, pushing the current submission including demo.mp4 and opening a PR. Plan: retain the upstream starter commit as main and publish completed work on submission/assignment-3 for review. No merge or Canvas submission requested.
+
+- Published public repository https://github.com/larsklanderpers/agents-assignment-3 and opened PR #1 from submission/assignment-3 to main. GitHub accepted demo.mp4 (103,915,659 bytes). Verified script exclusion and public visibility. Main remains the starter baseline pending review/merge; Canvas submission has not been performed.

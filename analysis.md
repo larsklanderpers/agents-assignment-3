@@ -89,4 +89,3 @@ In the end, the supplier evaluation benefits from language-based reasoning, espe
 ## Demo video
 
 The recorded walkthrough is included in [demo.mp4](demo.mp4).
-
