@@ -1,0 +1,443 @@
+{
+  "plan_id": "inventory-only-eoq",
+  "goal": "Using the existing historical sales and current inventory snapshot, calculate EOQ and identify inventory exceptions now. This is an inventory-only task; do not request a new demand forecast or supplier ranking.",
+  "executed_subgoal": "inventory",
+  "key_findings": [
+    "15 EOQ calculations; 5 historical exception flags.",
+    "3 reorder and 1 markdown recommendations."
+  ],
+  "recommended_actions": [
+    {
+      "sku": "SKU-006",
+      "recommended_action": "reorder",
+      "recommended_qty": 147,
+      "reasoning": "Classical validator enforced the explicitly stated coverage policy; original model recommendation and reasoning are retained in policy_validation. Review seasonality and heuristic assumptions before acting.",
+      "policy_validation": {
+        "corrected": true,
+        "llm_reported_action": "hold",
+        "llm_reported_qty": 0,
+        "original_reasoning": "Long_lead_time flag. Daily demand: (84+130+149)/3/30=4.033/day. Lead-time demand: 4.033*30=121. On_hand 95 < lead-time demand 121. Reorder: max(EOQ=135, ceil(4.033*(30+30)-95)=max(135,147))=147. Seasonal volatility, not viral; reorder 147."
+      }
+    },
+    {
+      "sku": "SKU-007",
+      "recommended_action": "reorder",
+      "recommended_qty": 736,
+      "reasoning": "Classical validator enforced the explicitly stated coverage policy; original model recommendation and reasoning are retained in policy_validation. Review seasonality and heuristic assumptions before acting.",
+      "policy_validation": {
+        "corrected": true,
+        "llm_reported_action": "reorder",
+        "llm_reported_qty": 539,
+        "original_reasoning": "Viral_spike + long_lead_time. Daily demand: (218+394+518)/3/30=12.33/day. On_hand 18 < reorder_point 80. Emergency qty: max(ceil(1.25*431)=539, ceil(12.33*(30+30)-18)=722). Wait\u2014max is 722. Spike persistence uncertain; recommend 722."
+      }
+    },
+    {
+      "sku": "SKU-009",
+      "recommended_action": "reorder",
+      "recommended_qty": 290,
+      "reasoning": "Classical validator enforced the explicitly stated coverage policy; original model recommendation and reasoning are retained in policy_validation. Review seasonality and heuristic assumptions before acting.",
+      "policy_validation": {
+        "corrected": true,
+        "llm_reported_action": "reorder",
+        "llm_reported_qty": 327,
+        "original_reasoning": "Long_lead_time. Daily demand: (105+164+187)/3/30=5.067/day. Lead-time demand: 5.067*42=213. On_hand 75 < 213. Reorder: max(EOQ=160, ceil(5.067*(42+30)-75)=ceil(289.8)=290). Recommend 290."
+      }
+    },
+    {
+      "sku": "SKU-013",
+      "recommended_action": "markdown",
+      "recommended_qty": 0,
+      "reasoning": "Declining flag. 30-day recent demand mean: (53+46+38)/3=45.7. On_hand 540 >> 45.7; excess stock warrants markdown. No liquidation evidence; markdown to reduce overstock.",
+      "policy_validation": {
+        "corrected": false,
+        "llm_reported_action": "markdown",
+        "llm_reported_qty": 0,
+        "original_reasoning": "Declining flag. 30-day recent demand mean: (53+46+38)/3=45.7. On_hand 540 >> 45.7; excess stock warrants markdown. No liquidation evidence; markdown to reduce overstock."
+      }
+    }
+  ],
+  "next_recommended_subgoal": null,
+  "remaining_subgoals": [],
+  "details": {
+    "inventory": [
+      {
+        "sku": "SKU-001",
+        "name": "Sunglasses",
+        "on_hand": 420,
+        "reorder_point": 80,
+        "annual_demand": 729,
+        "eoq_units": 246,
+        "holding_cost_per_unit_year": 1.2,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [],
+        "needs_llm_review": false
+      },
+      {
+        "sku": "SKU-002",
+        "name": "Beach Towel",
+        "on_hand": 310,
+        "reorder_point": 60,
+        "annual_demand": 790,
+        "eoq_units": 314,
+        "holding_cost_per_unit_year": 0.8,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [],
+        "needs_llm_review": false
+      },
+      {
+        "sku": "SKU-003",
+        "name": "Sunscreen SPF 50",
+        "on_hand": 180,
+        "reorder_point": 75,
+        "annual_demand": 855,
+        "eoq_units": 377,
+        "holding_cost_per_unit_year": 0.6,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [],
+        "needs_llm_review": false
+      },
+      {
+        "sku": "SKU-004",
+        "name": "Swim Trunks",
+        "on_hand": 260,
+        "reorder_point": 50,
+        "annual_demand": 917,
+        "eoq_units": 247,
+        "holding_cost_per_unit_year": 1.5,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [],
+        "needs_llm_review": false
+      },
+      {
+        "sku": "SKU-005",
+        "name": "Beach Chair",
+        "on_hand": 140,
+        "reorder_point": 30,
+        "annual_demand": 666,
+        "eoq_units": 149,
+        "holding_cost_per_unit_year": 3,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [
+          "long_lead_time"
+        ],
+        "needs_llm_review": true
+      },
+      {
+        "sku": "SKU-006",
+        "name": "Thermal Jacket",
+        "on_hand": 95,
+        "reorder_point": 40,
+        "annual_demand": 818,
+        "eoq_units": 135,
+        "holding_cost_per_unit_year": 4.5,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [
+          "long_lead_time"
+        ],
+        "needs_llm_review": true
+      },
+      {
+        "sku": "SKU-007",
+        "name": "Wool Gloves",
+        "on_hand": 18,
+        "reorder_point": 80,
+        "annual_demand": 1673,
+        "eoq_units": 431,
+        "holding_cost_per_unit_year": 0.9,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [
+          "viral_spike",
+          "long_lead_time"
+        ],
+        "needs_llm_review": true
+      },
+      {
+        "sku": "SKU-008",
+        "name": "Knit Beanie",
+        "on_hand": 210,
+        "reorder_point": 70,
+        "annual_demand": 959,
+        "eoq_units": 370,
+        "holding_cost_per_unit_year": 0.7,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [],
+        "needs_llm_review": false
+      },
+      {
+        "sku": "SKU-009",
+        "name": "Snow Boots",
+        "on_hand": 75,
+        "reorder_point": 35,
+        "annual_demand": 1028,
+        "eoq_units": 160,
+        "holding_cost_per_unit_year": 4,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [
+          "long_lead_time"
+        ],
+        "needs_llm_review": true
+      },
+      {
+        "sku": "SKU-010",
+        "name": "Electric Blanket",
+        "on_hand": 120,
+        "reorder_point": 50,
+        "annual_demand": 747,
+        "eoq_units": 153,
+        "holding_cost_per_unit_year": 3.2,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [],
+        "needs_llm_review": false
+      },
+      {
+        "sku": "SKU-011",
+        "name": "Stainless Bottle",
+        "on_hand": 330,
+        "reorder_point": 120,
+        "annual_demand": 903,
+        "eoq_units": 317,
+        "holding_cost_per_unit_year": 0.9,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [],
+        "needs_llm_review": false
+      },
+      {
+        "sku": "SKU-012",
+        "name": "Bluetooth Buds",
+        "on_hand": 260,
+        "reorder_point": 90,
+        "annual_demand": 986,
+        "eoq_units": 217,
+        "holding_cost_per_unit_year": 2.1,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [],
+        "needs_llm_review": false
+      },
+      {
+        "sku": "SKU-013",
+        "name": "Wired Earbuds",
+        "on_hand": 540,
+        "reorder_point": 80,
+        "annual_demand": 948,
+        "eoq_units": 397,
+        "holding_cost_per_unit_year": 0.6,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [
+          "declining"
+        ],
+        "needs_llm_review": true
+      },
+      {
+        "sku": "SKU-014",
+        "name": "Phone Case",
+        "on_hand": 410,
+        "reorder_point": 100,
+        "annual_demand": 1140,
+        "eoq_units": 534,
+        "holding_cost_per_unit_year": 0.4,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [],
+        "needs_llm_review": false
+      },
+      {
+        "sku": "SKU-015",
+        "name": "Notebook A5",
+        "on_hand": 380,
+        "reorder_point": 90,
+        "annual_demand": 828,
+        "eoq_units": 486,
+        "holding_cost_per_unit_year": 0.35,
+        "ordering_cost_usd": 50,
+        "assumption_flags": [],
+        "needs_llm_review": false
+      }
+    ],
+    "recommendations": [
+      {
+        "sku": "SKU-001",
+        "recommended_action": "hold",
+        "recommended_qty": 0,
+        "reasoning": "No exception flags. On_hand 420 far exceeds reorder_point 80. Monthly demand averages ~32; 30-day mean ~32. Ample coverage; no action needed. EOQ 246 remains classical baseline.",
+        "policy_validation": {
+          "corrected": false,
+          "llm_reported_action": "hold",
+          "llm_reported_qty": 0,
+          "original_reasoning": "No exception flags. On_hand 420 far exceeds reorder_point 80. Monthly demand averages ~32; 30-day mean ~32. Ample coverage; no action needed. EOQ 246 remains classical baseline."
+        }
+      },
+      {
+        "sku": "SKU-002",
+        "recommended_action": "hold",
+        "recommended_qty": 0,
+        "reasoning": "No exception flags. On_hand 310 well above reorder_point 60. 3-month mean ~35/month. Coverage is strong. No exception; hold.",
+        "policy_validation": {
+          "corrected": false,
+          "llm_reported_action": "hold",
+          "llm_reported_qty": 0,
+          "original_reasoning": "No exception flags. On_hand 310 well above reorder_point 60. 3-month mean ~35/month. Coverage is strong. No exception; hold."
+        }
+      },
+      {
+        "sku": "SKU-003",
+        "recommended_action": "hold",
+        "recommended_qty": 0,
+        "reasoning": "No exception flags. On_hand 180 above reorder_point 75. 3-month mean ~38/month. Adequate stock. No exception; hold.",
+        "policy_validation": {
+          "corrected": false,
+          "llm_reported_action": "hold",
+          "llm_reported_qty": 0,
+          "original_reasoning": "No exception flags. On_hand 180 above reorder_point 75. 3-month mean ~38/month. Adequate stock. No exception; hold."
+        }
+      },
+      {
+        "sku": "SKU-004",
+        "recommended_action": "hold",
+        "recommended_qty": 0,
+        "reasoning": "No exception flags. On_hand 260 above reorder_point 50. 3-month mean ~40.7/month. Well covered. No exception; hold.",
+        "policy_validation": {
+          "corrected": false,
+          "llm_reported_action": "hold",
+          "llm_reported_qty": 0,
+          "original_reasoning": "No exception flags. On_hand 260 above reorder_point 50. 3-month mean ~40.7/month. Well covered. No exception; hold."
+        }
+      },
+      {
+        "sku": "SKU-005",
+        "recommended_action": "hold",
+        "recommended_qty": 0,
+        "reasoning": "Long_lead_time flag. Daily recent demand: (42+26+21)/3/30=0.989/day. Lead-time demand: 0.989*35=34.6. On_hand 140 > reorder_point 30 and > 34.6. Well covered; hold.",
+        "policy_validation": {
+          "corrected": false,
+          "llm_reported_action": "hold",
+          "llm_reported_qty": 0,
+          "original_reasoning": "Long_lead_time flag. Daily recent demand: (42+26+21)/3/30=0.989/day. Lead-time demand: 0.989*35=34.6. On_hand 140 > reorder_point 30 and > 34.6. Well covered; hold."
+        }
+      },
+      {
+        "sku": "SKU-006",
+        "recommended_action": "reorder",
+        "recommended_qty": 147,
+        "reasoning": "Classical validator enforced the explicitly stated coverage policy; original model recommendation and reasoning are retained in policy_validation. Review seasonality and heuristic assumptions before acting.",
+        "policy_validation": {
+          "corrected": true,
+          "llm_reported_action": "hold",
+          "llm_reported_qty": 0,
+          "original_reasoning": "Long_lead_time flag. Daily demand: (84+130+149)/3/30=4.033/day. Lead-time demand: 4.033*30=121. On_hand 95 < lead-time demand 121. Reorder: max(EOQ=135, ceil(4.033*(30+30)-95)=max(135,147))=147. Seasonal volatility, not viral; reorder 147."
+        }
+      },
+      {
+        "sku": "SKU-007",
+        "recommended_action": "reorder",
+        "recommended_qty": 736,
+        "reasoning": "Classical validator enforced the explicitly stated coverage policy; original model recommendation and reasoning are retained in policy_validation. Review seasonality and heuristic assumptions before acting.",
+        "policy_validation": {
+          "corrected": true,
+          "llm_reported_action": "reorder",
+          "llm_reported_qty": 539,
+          "original_reasoning": "Viral_spike + long_lead_time. Daily demand: (218+394+518)/3/30=12.33/day. On_hand 18 < reorder_point 80. Emergency qty: max(ceil(1.25*431)=539, ceil(12.33*(30+30)-18)=722). Wait\u2014max is 722. Spike persistence uncertain; recommend 722."
+        }
+      },
+      {
+        "sku": "SKU-008",
+        "recommended_action": "hold",
+        "recommended_qty": 0,
+        "reasoning": "No exception flags. On_hand 210 above reorder_point 70. 3-month mean ~141.7/month (~4.72/day). 30-day demand ~142. Stock covers ~44 days. No exception; hold.",
+        "policy_validation": {
+          "corrected": false,
+          "llm_reported_action": "hold",
+          "llm_reported_qty": 0,
+          "original_reasoning": "No exception flags. On_hand 210 above reorder_point 70. 3-month mean ~141.7/month (~4.72/day). 30-day demand ~142. Stock covers ~44 days. No exception; hold."
+        }
+      },
+      {
+        "sku": "SKU-009",
+        "recommended_action": "reorder",
+        "recommended_qty": 290,
+        "reasoning": "Classical validator enforced the explicitly stated coverage policy; original model recommendation and reasoning are retained in policy_validation. Review seasonality and heuristic assumptions before acting.",
+        "policy_validation": {
+          "corrected": true,
+          "llm_reported_action": "reorder",
+          "llm_reported_qty": 327,
+          "original_reasoning": "Long_lead_time. Daily demand: (105+164+187)/3/30=5.067/day. Lead-time demand: 5.067*42=213. On_hand 75 < 213. Reorder: max(EOQ=160, ceil(5.067*(42+30)-75)=ceil(289.8)=290). Recommend 290."
+        }
+      },
+      {
+        "sku": "SKU-010",
+        "recommended_action": "hold",
+        "recommended_qty": 0,
+        "reasoning": "No exception flags. On_hand 120 above reorder_point 50. 3-month mean ~110.3/month (~3.68/day). Lead-time demand (28 days): ~103. On_hand 120 > 103 and > reorder_point. Hold.",
+        "policy_validation": {
+          "corrected": false,
+          "llm_reported_action": "hold",
+          "llm_reported_qty": 0,
+          "original_reasoning": "No exception flags. On_hand 120 above reorder_point 50. 3-month mean ~110.3/month (~3.68/day). Lead-time demand (28 days): ~103. On_hand 120 > 103 and > reorder_point. Hold."
+        }
+      },
+      {
+        "sku": "SKU-011",
+        "recommended_action": "hold",
+        "recommended_qty": 0,
+        "reasoning": "No exception flags. On_hand 330 above reorder_point 120. 3-month mean ~76/month. Well covered. No exception; hold.",
+        "policy_validation": {
+          "corrected": false,
+          "llm_reported_action": "hold",
+          "llm_reported_qty": 0,
+          "original_reasoning": "No exception flags. On_hand 330 above reorder_point 120. 3-month mean ~76/month. Well covered. No exception; hold."
+        }
+      },
+      {
+        "sku": "SKU-012",
+        "recommended_action": "hold",
+        "recommended_qty": 0,
+        "reasoning": "No exception flags. On_hand 260 above reorder_point 90. 3-month mean ~83/month. Coverage adequate. No exception; hold.",
+        "policy_validation": {
+          "corrected": false,
+          "llm_reported_action": "hold",
+          "llm_reported_qty": 0,
+          "original_reasoning": "No exception flags. On_hand 260 above reorder_point 90. 3-month mean ~83/month. Coverage adequate. No exception; hold."
+        }
+      },
+      {
+        "sku": "SKU-013",
+        "recommended_action": "markdown",
+        "recommended_qty": 0,
+        "reasoning": "Declining flag. 30-day recent demand mean: (53+46+38)/3=45.7. On_hand 540 >> 45.7; excess stock warrants markdown. No liquidation evidence; markdown to reduce overstock.",
+        "policy_validation": {
+          "corrected": false,
+          "llm_reported_action": "markdown",
+          "llm_reported_qty": 0,
+          "original_reasoning": "Declining flag. 30-day recent demand mean: (53+46+38)/3=45.7. On_hand 540 >> 45.7; excess stock warrants markdown. No liquidation evidence; markdown to reduce overstock."
+        }
+      },
+      {
+        "sku": "SKU-014",
+        "recommended_action": "hold",
+        "recommended_qty": 0,
+        "reasoning": "No exception flags. On_hand 410 above reorder_point 100. 3-month mean ~96/month. Well covered. No exception; hold.",
+        "policy_validation": {
+          "corrected": false,
+          "llm_reported_action": "hold",
+          "llm_reported_qty": 0,
+          "original_reasoning": "No exception flags. On_hand 410 above reorder_point 100. 3-month mean ~96/month. Well covered. No exception; hold."
+        }
+      },
+      {
+        "sku": "SKU-015",
+        "recommended_action": "hold",
+        "recommended_qty": 0,
+        "reasoning": "No exception flags. On_hand 380 above reorder_point 90. 3-month mean ~69.7/month. Ample coverage. No exception; hold.",
+        "policy_validation": {
+          "corrected": false,
+          "llm_reported_action": "hold",
+          "llm_reported_qty": 0,
+          "original_reasoning": "No exception flags. On_hand 380 above reorder_point 90. 3-month mean ~69.7/month. Ample coverage. No exception; hold."
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "One planner-selected branch executes per run. No automatic purchasing or bookings.",
+    "Historical observations inform scenarios, not proven future demand. EOQ uses historical annual demand.",
+    "Fixed rubric anchors and inventory thresholds are exercise policy choices."
+  ]
+}

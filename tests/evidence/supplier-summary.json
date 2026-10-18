@@ -1,0 +1,284 @@
+{
+  "plan_id": "supplier-review-standalone",
+  "goal": "Rank the six suppliers using only their supplied delivery, quality, lead-time and payment-term KPIs. This is a standalone supplier performance review; no demand forecast, inventory optimization or shipping plan is needed.",
+  "executed_subgoal": "supplier",
+  "key_findings": [
+    "Ranked 6 suppliers.",
+    "SUP-001 leads at 80.83/100.",
+    "5 model score rows corrected by classical validation; original scores retained."
+  ],
+  "recommended_actions": [
+    {
+      "supplier_id": "SUP-005",
+      "score_total": 58.96,
+      "score_breakdown": {
+        "cost": 11.25,
+        "lead_time": 10.71,
+        "reliability": 21,
+        "quality": 16
+      },
+      "tier": "watch",
+      "recommendation": "Better payment terms partially offset weaker reliability and quality. Supplier should target on-time rate above 0.93 and defect rate below 1% to exit watch status. High MOQ adds inventory risk.",
+      "score_validation": {
+        "corrected_fields": [
+          "score_total"
+        ],
+        "llm_reported_scores": {
+          "score_total": 57.86,
+          "score_breakdown": {
+            "cost": 11.25,
+            "lead_time": 10.71,
+            "reliability": 21,
+            "quality": 16
+          },
+          "tier": "watch"
+        },
+        "recommendation_requires_review": true
+      }
+    },
+    {
+      "supplier_id": "SUP-003",
+      "score_total": 57.42,
+      "score_breakdown": {
+        "cost": 11.25,
+        "lead_time": 4.17,
+        "reliability": 24.5,
+        "quality": 17.5
+      },
+      "tier": "watch",
+      "recommendation": "Reliability is moderate but long lead time severely limits DTC responsiveness. Reducing avg lead time below 20 days is the single highest-leverage improvement available. Defect reduction would further help.",
+      "score_validation": {
+        "corrected_fields": [
+          "quality",
+          "score_total"
+        ],
+        "llm_reported_scores": {
+          "score_total": 55.56,
+          "score_breakdown": {
+            "cost": 11.25,
+            "lead_time": 4.17,
+            "reliability": 24.5,
+            "quality": 18.75
+          },
+          "tier": "watch"
+        },
+        "recommendation_requires_review": true
+      }
+    },
+    {
+      "supplier_id": "SUP-002",
+      "score_total": 53.66,
+      "score_breakdown": {
+        "cost": 15,
+        "lead_time": 8.33,
+        "reliability": 16.33,
+        "quality": 14
+      },
+      "tier": "deprioritize",
+      "recommendation": "Maximum payment terms provide cash-flow benefit, but on-time rate and defect rate drag performance. Reliability must improve substantially; until then, limit share-of-wallet and maintain backup sourcing.",
+      "score_validation": {
+        "corrected_fields": [
+          "reliability",
+          "quality",
+          "score_total",
+          "tier"
+        ],
+        "llm_reported_scores": {
+          "score_total": 60.25,
+          "score_breakdown": {
+            "cost": 15,
+            "lead_time": 8.33,
+            "reliability": 16.8,
+            "quality": 20.5
+          },
+          "tier": "approved"
+        },
+        "recommendation_requires_review": true
+      }
+    }
+  ],
+  "next_recommended_subgoal": null,
+  "remaining_subgoals": [],
+  "details": {
+    "supplier_rankings": [
+      {
+        "supplier_id": "SUP-001",
+        "score_total": 80.83,
+        "score_breakdown": {
+          "cost": 7.5,
+          "lead_time": 20.83,
+          "reliability": 31.5,
+          "quality": 21
+        },
+        "tier": "approved",
+        "recommendation": "Strong on-time rate and fast lead time make this a reliable DTC partner. Reducing defect rate toward 0.5% would unlock preferred tier. Consider perishable-category expansion given declared capability.",
+        "score_validation": {
+          "corrected_fields": [],
+          "llm_reported_scores": {
+            "score_total": 80.83,
+            "score_breakdown": {
+              "cost": 7.5,
+              "lead_time": 20.83,
+              "reliability": 31.5,
+              "quality": 21
+            },
+            "tier": "approved"
+          },
+          "recommendation_requires_review": false
+        }
+      },
+      {
+        "supplier_id": "SUP-006",
+        "score_total": 76.96,
+        "score_breakdown": {
+          "cost": 7.5,
+          "lead_time": 14.29,
+          "reliability": 32.67,
+          "quality": 22.5
+        },
+        "tier": "approved",
+        "recommendation": "Exceptional quality and reliability anchor this supplier as a top pick. Negotiate extended payment terms or lower MOQ to further strengthen the partnership. Lead time improvement would push scores higher.",
+        "score_validation": {
+          "corrected_fields": [
+            "quality",
+            "score_total",
+            "tier"
+          ],
+          "llm_reported_scores": {
+            "score_total": 88.33,
+            "score_breakdown": {
+              "cost": 7.5,
+              "lead_time": 14.29,
+              "reliability": 32.67,
+              "quality": 25
+            },
+            "tier": "preferred"
+          },
+          "recommendation_requires_review": true
+        }
+      },
+      {
+        "supplier_id": "SUP-004",
+        "score_total": 73.34,
+        "score_breakdown": {
+          "cost": 7.5,
+          "lead_time": 16.67,
+          "reliability": 29.17,
+          "quality": 20
+        },
+        "tier": "approved",
+        "recommendation": "Solid across all dimensions with perishable support. Closing the reliability gap versus SUP-001 and trimming defects would lift total score. Payment term extension could improve cash-flow flexibility.",
+        "score_validation": {
+          "corrected_fields": [
+            "quality",
+            "score_total"
+          ],
+          "llm_reported_scores": {
+            "score_total": 78.17,
+            "score_breakdown": {
+              "cost": 7.5,
+              "lead_time": 16.67,
+              "reliability": 29.17,
+              "quality": 22.5
+            },
+            "tier": "approved"
+          },
+          "recommendation_requires_review": true
+        }
+      },
+      {
+        "supplier_id": "SUP-005",
+        "score_total": 58.96,
+        "score_breakdown": {
+          "cost": 11.25,
+          "lead_time": 10.71,
+          "reliability": 21,
+          "quality": 16
+        },
+        "tier": "watch",
+        "recommendation": "Better payment terms partially offset weaker reliability and quality. Supplier should target on-time rate above 0.93 and defect rate below 1% to exit watch status. High MOQ adds inventory risk.",
+        "score_validation": {
+          "corrected_fields": [
+            "score_total"
+          ],
+          "llm_reported_scores": {
+            "score_total": 57.86,
+            "score_breakdown": {
+              "cost": 11.25,
+              "lead_time": 10.71,
+              "reliability": 21,
+              "quality": 16
+            },
+            "tier": "watch"
+          },
+          "recommendation_requires_review": true
+        }
+      },
+      {
+        "supplier_id": "SUP-003",
+        "score_total": 57.42,
+        "score_breakdown": {
+          "cost": 11.25,
+          "lead_time": 4.17,
+          "reliability": 24.5,
+          "quality": 17.5
+        },
+        "tier": "watch",
+        "recommendation": "Reliability is moderate but long lead time severely limits DTC responsiveness. Reducing avg lead time below 20 days is the single highest-leverage improvement available. Defect reduction would further help.",
+        "score_validation": {
+          "corrected_fields": [
+            "quality",
+            "score_total"
+          ],
+          "llm_reported_scores": {
+            "score_total": 55.56,
+            "score_breakdown": {
+              "cost": 11.25,
+              "lead_time": 4.17,
+              "reliability": 24.5,
+              "quality": 18.75
+            },
+            "tier": "watch"
+          },
+          "recommendation_requires_review": true
+        }
+      },
+      {
+        "supplier_id": "SUP-002",
+        "score_total": 53.66,
+        "score_breakdown": {
+          "cost": 15,
+          "lead_time": 8.33,
+          "reliability": 16.33,
+          "quality": 14
+        },
+        "tier": "deprioritize",
+        "recommendation": "Maximum payment terms provide cash-flow benefit, but on-time rate and defect rate drag performance. Reliability must improve substantially; until then, limit share-of-wallet and maintain backup sourcing.",
+        "score_validation": {
+          "corrected_fields": [
+            "reliability",
+            "quality",
+            "score_total",
+            "tier"
+          ],
+          "llm_reported_scores": {
+            "score_total": 60.25,
+            "score_breakdown": {
+              "cost": 15,
+              "lead_time": 8.33,
+              "reliability": 16.8,
+              "quality": 20.5
+            },
+            "tier": "approved"
+          },
+          "recommendation_requires_review": true
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "One planner-selected branch executes per run. No automatic purchasing or bookings.",
+    "Historical observations inform scenarios, not proven future demand. EOQ uses historical annual demand.",
+    "Fixed rubric anchors and inventory thresholds are exercise policy choices."
+  ]
+}

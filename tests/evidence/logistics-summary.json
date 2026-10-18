@@ -1,0 +1,73 @@
+{
+  "plan_id": "carrier-assignment",
+  "goal": "Plan carrier assignments for the three supplied demo shipping requests using the existing carrier catalogue. This is a standalone logistics task; no forecasting, inventory optimization or supplier ranking is required.",
+  "executed_subgoal": "logistics",
+  "key_findings": [
+    "3 shipment decisions; 1 infeasible."
+  ],
+  "recommended_actions": [
+    {
+      "request_id": "REQ-002",
+      "action": "manual_review_no_feasible_carrier"
+    }
+  ],
+  "next_recommended_subgoal": null,
+  "remaining_subgoals": [],
+  "details": {
+    "shipments": [
+      {
+        "request_id": "REQ-001",
+        "weight_kg": 850,
+        "deadline_days": 14,
+        "chosen": {
+          "type": "option",
+          "option_id": "SHP-004",
+          "carrier": "DHL",
+          "mode": "air",
+          "origin_region": "Asia",
+          "destination_region": "North America",
+          "transit_days": "5",
+          "cost_per_kg": "11.80",
+          "max_weight_kg": "1500",
+          "supports_perishable": "true",
+          "total_cost_usd": 10030
+        },
+        "feasible": true,
+        "method": "classical_greedy"
+      },
+      {
+        "request_id": "REQ-002",
+        "weight_kg": 60,
+        "deadline_days": 3,
+        "chosen": null,
+        "feasible": false,
+        "method": "classical_greedy"
+      },
+      {
+        "request_id": "REQ-003",
+        "weight_kg": 1200,
+        "deadline_days": 21,
+        "chosen": {
+          "type": "option",
+          "option_id": "SHP-008",
+          "carrier": "Hapag-Lloyd",
+          "mode": "ocean",
+          "origin_region": "Europe",
+          "destination_region": "North America",
+          "transit_days": "18",
+          "cost_per_kg": "1.65",
+          "max_weight_kg": "26000",
+          "supports_perishable": "false",
+          "total_cost_usd": 1980
+        },
+        "feasible": true,
+        "method": "classical_greedy"
+      }
+    ]
+  },
+  "limitations": [
+    "One planner-selected branch executes per run. No automatic purchasing or bookings.",
+    "Historical observations inform scenarios, not proven future demand. EOQ uses historical annual demand.",
+    "Fixed rubric anchors and inventory thresholds are exercise policy choices."
+  ]
+}
